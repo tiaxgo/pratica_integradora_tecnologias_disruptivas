@@ -28,6 +28,45 @@
   color: #61dafb;
 }
 
+/* Estilização geral do aplicativo */
+.App {
+  height: 100vh; /* Ocupa toda a altura da janela */
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  background: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Fundo com gradiente suave */
+  font-family: 'Roboto', sans-serif; /* Fonte padrão */
+}
+
+/* Container do formulário de login */
+.login-container {
+  background-color: #ffffff; /* Fundo branco */
+  padding: 40px; /* Espaçamento interno */
+  border-radius: 15px; /* Cantos arredondados */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5); /* Sombra suave */
+  width: 100%;
+  max-width: 400px; /* Largura máxima */
+}
+
+/* Título do formulário */
+.form-title {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333333;
+}
+
+/* Estilização dos campos de input */
+.input-field {
+  margin-bottom: 20px;
+}
+
+/* Botão de submissão */
+.submit-button {
+  width: 100%;
+  background-color: ;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
