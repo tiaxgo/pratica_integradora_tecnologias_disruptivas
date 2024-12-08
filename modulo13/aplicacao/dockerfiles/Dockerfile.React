@@ -1,21 +1,32 @@
+# Use uma imagem base Node.js leve
 FROM node:slim
 
-#Define o diretorio de trabalho dentro do container
+# Define o diretório de trabalho dentro do contêiner
 WORKDIR /app
 
-#Opcional: instala o bash e o procps
-RUN /bin/sh -c "apt-get install bash"
-RUN apt-get update && apt-get install -y procps
+# Instala ferramentas básicas
+RUN apt-get update && apt-get install -y procps && apt-get clean
 
-#Copia o arquivo de dependencias para o workdir
-COPY frontend/package.json ./
+# Copia apenas o arquivo package.json e package-lock.json (se existir)
+COPY frontend/package*.json ./
 
-#Instala as dependencias definidas no package.json
+# Instala as dependências
 RUN npm install
 
-#Copia o codigo da aplicacao do host para o container
+# Define a variável para contornar problemas de OpenSSL
+ENV NODE_OPTIONS=--openssl-legacy-provider
+
+# Copia o restante do código para o contêiner
 COPY frontend/ .
 
-EXPOSE 3000
+# Gera o build de produção
+RUN npm run build
 
-CMD ["npm", "start"]
+# Instala o servidor estático para servir os arquivos do React
+RUN npm install -g serve
+
+# Comando para servir os arquivos estáticos do build
+CMD ["serve", "-s", "build"]
+
+# Exponha a porta padrão do React
+EXPOSE 3000
